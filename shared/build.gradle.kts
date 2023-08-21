@@ -88,7 +88,7 @@ kotlin {
 }
 
 android {
-    namespace = "com.composemultiplatform.contacts"
+    namespace = "com.composemultiplatform.contactsapp"
     compileSdk = 33
     defaultConfig {
         minSdk = 24

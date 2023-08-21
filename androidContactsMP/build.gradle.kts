@@ -1,5 +1,3 @@
-import com.android.build.api.dsl.Packaging
-
 plugins {
     id("com.android.application")
     kotlin("android")
@@ -7,7 +5,7 @@ plugins {
 }
 
 android {
-    namespace = "com.composemultiplatform.contacts.android"
+    namespace = "com.composemultiplatform.contactsapp.android"
     compileSdk = 33
     defaultConfig {
         applicationId = "com.compose-multiplatform.contacts.android"

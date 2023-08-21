@@ -1,4 +1,4 @@
-package com.composemultiplatform.contacts.android
+package com.composemultiplatform.contactsapp.android
 
 import android.os.Bundle
 import androidx.activity.ComponentActivity

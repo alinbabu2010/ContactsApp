@@ -1,4 +1,4 @@
-package com.composemultiplatform.contacts.ui.theme
+package com.composemultiplatform.contactsapp.ui.theme
 
 import androidx.compose.material3.Typography
 import androidx.compose.ui.text.TextStyle
