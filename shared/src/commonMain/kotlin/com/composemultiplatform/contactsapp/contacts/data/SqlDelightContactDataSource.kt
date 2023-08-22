@@ -12,7 +12,7 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
 import kotlinx.datetime.Clock
 
-class SqlDelightContactDatabase(database: ContactDatabase) : ContactDataSource {
+class SqlDelightContactDataSource(database: ContactDatabase) : ContactDataSource {
 
     private val queries = database.contactsQueries
 
