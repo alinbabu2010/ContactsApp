@@ -27,7 +27,7 @@ import com.composemultiplatform.contactsapp.contacts.presentation.components.Con
 @Composable
 fun ContactListScreen(
     state: ContactsListState,
-    newContact: Contact,
+    newContact: Contact?,
     onEvent: (ContactListEvent) -> Unit
 ) {
     Scaffold(
@@ -68,7 +68,7 @@ fun ContactListScreen(
                         .clickable {
                             onEvent(ContactListEvent.SelectContact(contact))
                         }
-                        .padding(vertical = 16.dp)
+                        .padding(horizontal = 16.dp)
                 )
             }
 
