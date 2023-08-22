@@ -6,11 +6,11 @@ plugins {
 
 android {
     namespace = "com.composemultiplatform.contactsapp.android"
-    compileSdk = 33
+    compileSdk = 34
     defaultConfig {
-        applicationId = "com.compose-multiplatform.contacts.android"
+        applicationId = "com.composemultiplatform.contacts.android"
         minSdk = 24
-        targetSdk = 33
+        targetSdk = 34
         versionCode = 1
         versionName = "1.0"
     }
@@ -18,7 +18,7 @@ android {
         compose = true
     }
     composeOptions {
-        kotlinCompilerExtensionVersion = "1.4.4"
+        kotlinCompilerExtensionVersion = "1.5.1"
     }
     packaging {
         resources {

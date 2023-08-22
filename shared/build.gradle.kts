@@ -6,7 +6,7 @@ plugins {
 }
 
 kotlin {
-    android {
+    androidTarget {
         compilations.all {
             kotlinOptions {
                 jvmTarget = "17"
@@ -89,7 +89,7 @@ kotlin {
 
 android {
     namespace = "com.composemultiplatform.contactsapp"
-    compileSdk = 33
+    compileSdk = 34
     defaultConfig {
         minSdk = 24
     }
