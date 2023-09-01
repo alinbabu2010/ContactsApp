@@ -5,6 +5,7 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.isSystemInDarkTheme
 import com.composemultiplatform.contactsapp.App
+import com.composemultiplatform.contactsapp.core.presentation.ImagePickerFactory
 import com.composemultiplatform.contactsapp.di.AppModule
 
 class MainActivity : ComponentActivity() {
@@ -14,7 +15,8 @@ class MainActivity : ComponentActivity() {
             App(
                 darkTheme = isSystemInDarkTheme(),
                 dynamicColor = true,
-                appModule = AppModule(this)
+                appModule = AppModule(this),
+                imagePicker = ImagePickerFactory().createPicker()
             )
         }
     }

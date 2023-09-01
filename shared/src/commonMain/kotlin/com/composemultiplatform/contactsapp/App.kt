@@ -10,6 +10,7 @@ import androidx.compose.ui.Modifier
 import com.composemultiplatform.contactsapp.contacts.presentation.ContactListScreen
 import com.composemultiplatform.contactsapp.contacts.presentation.ContactsListViewModel
 import com.composemultiplatform.contactsapp.core.presentation.ContactsTheme
+import com.composemultiplatform.contactsapp.core.presentation.ImagePicker
 import com.composemultiplatform.contactsapp.di.AppModule
 import dev.icerock.moko.mvvm.compose.getViewModel
 import dev.icerock.moko.mvvm.compose.viewModelFactory
@@ -18,7 +19,8 @@ import dev.icerock.moko.mvvm.compose.viewModelFactory
 fun App(
     darkTheme: Boolean,
     dynamicColor: Boolean,
-    appModule: AppModule
+    appModule: AppModule,
+    imagePicker: ImagePicker
 ) {
 
     ContactsTheme(
