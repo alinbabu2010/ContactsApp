@@ -24,6 +24,7 @@ import com.composemultiplatform.contactsapp.contacts.domain.Contact
 import com.composemultiplatform.contactsapp.contacts.presentation.components.AddContactSheet
 import com.composemultiplatform.contactsapp.contacts.presentation.components.ContactDetailSheet
 import com.composemultiplatform.contactsapp.contacts.presentation.components.ContactListItem
+import com.composemultiplatform.contactsapp.contacts.presentation.components.RecentlyAddedContacts
 import com.composemultiplatform.contactsapp.core.presentation.ImagePicker
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -60,6 +61,15 @@ fun ContactListScreen(
             contentPadding = PaddingValues(vertical = 16.dp),
             verticalArrangement = Arrangement.spacedBy(16.dp)
         ) {
+
+            item {
+                RecentlyAddedContacts(
+                    contacts = state.recentlyAddedContacts,
+                    onClick = {
+                        onEvent(ContactListEvent.SelectContact(it))
+                    }
+                )
+            }
 
             item {
                 Text(
