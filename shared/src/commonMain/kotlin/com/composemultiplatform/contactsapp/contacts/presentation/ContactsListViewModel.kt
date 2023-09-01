@@ -44,6 +44,7 @@ class ContactsListViewModel(
             ContactListEvent.DismissContact -> dismissContact()
             ContactListEvent.OnAddNewContactClick -> onAddNewContactClick()
             ContactListEvent.SaveContact -> saveContact()
+            ContactListEvent.ClearSelectedContact -> clearSelectedContact()
             ContactListEvent.OnAddPhotoClicked -> {}
             is ContactListEvent.EditContact -> editContact(event.contact)
             is ContactListEvent.OnEmailChanged -> onEmailChanged(event.value)
@@ -77,8 +78,7 @@ class ContactsListViewModel(
                 }
                 viewModelScope.launch {
                     contactDataSource.insertContact(contact)
-                    delay(300L) // Animation delay
-                    newContact = null
+                    clearNewContact()
                 }
             } else {
                 _uiState.update {
@@ -152,7 +152,6 @@ class ContactsListViewModel(
     private fun editContact(contact: Contact) {
         _uiState.update {
             it.copy(
-                selectedContact = null,
                 isAddContactSheetOpen = true,
                 isSelectedContactSheetOpen = false
             )
@@ -161,6 +160,7 @@ class ContactsListViewModel(
     }
 
     private fun dismissContact() {
+        // No need to invoke clear selected contact as it will be invoked on exit transition end.
         viewModelScope.launch {
             _uiState.update {
                 it.copy(
@@ -172,13 +172,7 @@ class ContactsListViewModel(
                     phoneNumberError = null
                 )
             }
-            delay(300L) //Animation delay
-            newContact = null
-            _uiState.update {
-                it.copy(
-                    selectedContact = null
-                )
-            }
+            clearNewContact()
         }
     }
 
@@ -186,14 +180,21 @@ class ContactsListViewModel(
         viewModelScope.launch {
             _uiState.value.selectedContact?.id?.let { id ->
                 _uiState.update {
-                    it.copy(isAddContactSheetOpen = false)
+                    it.copy(isSelectedContactSheetOpen = false)
                 }
                 contactDataSource.deleteContact(id)
-                delay(300L) // Animation delay
-                _uiState.update {
-                    it.copy(selectedContact = null)
-                }
             }
+        }
+    }
+
+    private suspend fun clearNewContact() {
+        delay(100L) // Animation delay
+        newContact = null
+    }
+
+    private fun clearSelectedContact() {
+        _uiState.update {
+            it.copy(selectedContact = null)
         }
     }
 
