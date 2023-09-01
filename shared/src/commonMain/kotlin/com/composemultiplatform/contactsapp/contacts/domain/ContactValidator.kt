@@ -10,7 +10,7 @@ object ContactValidator {
         }
 
         if (contact.lastName.isBlank()) {
-            result = result.copy(firstNameError = "Last name can't be empty")
+            result = result.copy(lastNameError = "Last name can't be empty")
         }
 
         val emailRegex = Regex("^[\\w-.]+@([\\w-]+\\.)+[\\w-]{2,4}\$")
