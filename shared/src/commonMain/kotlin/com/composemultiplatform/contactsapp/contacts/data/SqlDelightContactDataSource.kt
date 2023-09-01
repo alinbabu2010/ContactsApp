@@ -60,8 +60,8 @@ class SqlDelightContactDataSource(
             id = contact.id,
             firstName = contact.firstName,
             lastName = contact.lastName,
-            phoneNumber = contact.email,
-            email = contact.phoneNumber,
+            phoneNumber = contact.phoneNumber,
+            email = contact.email,
             createdAt = Clock.System.now().toEpochMilliseconds(),
             imagePath = imagePath
         )
