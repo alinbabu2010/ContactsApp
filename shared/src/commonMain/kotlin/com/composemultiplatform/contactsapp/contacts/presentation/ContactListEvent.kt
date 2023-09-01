@@ -15,4 +15,5 @@ sealed interface ContactListEvent {
     data class SelectContact(val contact: Contact) : ContactListEvent
     data class EditContact(val contact: Contact) : ContactListEvent
     data object DeleteContact : ContactListEvent
+    data object ClearSelectedContact : ContactListEvent
 }
