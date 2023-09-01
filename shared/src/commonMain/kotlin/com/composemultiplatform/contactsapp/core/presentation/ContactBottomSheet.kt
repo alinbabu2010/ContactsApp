@@ -1,6 +1,7 @@
 package com.composemultiplatform.contactsapp.core.presentation
 
 import androidx.compose.animation.AnimatedVisibility
+import androidx.compose.animation.core.MutableTransitionState
 import androidx.compose.animation.core.tween
 import androidx.compose.animation.slideInVertically
 import androidx.compose.animation.slideOutVertically
@@ -13,6 +14,7 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.unit.dp
@@ -21,11 +23,19 @@ import androidx.compose.ui.unit.dp
 fun ContactBottomSheet(
     visible: Boolean,
     modifier: Modifier,
+    onAnimationEnd: () -> Unit = {},
     content: @Composable ColumnScope.() -> Unit
 ) {
 
+    val animVisibleState = remember { MutableTransitionState(false) }
+        .apply { targetState = visible }
+
+    if (animVisibleState.isIdle && !animVisibleState.currentState) {
+        onAnimationEnd()
+    }
+
     AnimatedVisibility(
-        visible = visible,
+        visibleState = animVisibleState,
         enter = slideInVertically(
             animationSpec = tween(durationMillis = 300),
             initialOffsetY = { it }
