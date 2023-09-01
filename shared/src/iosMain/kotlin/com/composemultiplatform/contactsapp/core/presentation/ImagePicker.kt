@@ -1,5 +1,6 @@
 package com.composemultiplatform.contactsapp.core.presentation
 
+import androidx.compose.runtime.Composable
 import kotlinx.cinterop.refTo
 import platform.UIKit.UIImage
 import platform.UIKit.UIImageJPEGRepresentation
@@ -44,6 +45,7 @@ actual class ImagePicker(
         }
     }
 
+    @Composable
     actual fun registerPicker(onImagePicked: (ByteArray) -> Unit) {
         this.onImagePicked = onImagePicked
     }

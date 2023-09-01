@@ -1,8 +1,11 @@
 package com.composemultiplatform.contactsapp.core.presentation
 
+import android.annotation.SuppressLint
 import androidx.activity.ComponentActivity
+import androidx.activity.compose.rememberLauncherForActivityResult
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.compose.runtime.Composable
 
 
 actual class ImagePicker(
@@ -11,8 +14,10 @@ actual class ImagePicker(
 
     private lateinit var getContent: ActivityResultLauncher<String>
 
+    @SuppressLint("ComposableNaming")
+    @Composable
     actual fun registerPicker(onImagePicked: (ByteArray) -> Unit) {
-        getContent = activity.registerForActivityResult(
+        getContent = rememberLauncherForActivityResult(
             ActivityResultContracts.GetContent()
         ) { uri ->
             uri?.let {
