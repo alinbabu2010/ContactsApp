@@ -42,7 +42,8 @@ fun App(
             ContactListScreen(
                 state = uiState,
                 newContact = viewModel.newContact,
-                onEvent = viewModel::onEvent
+                onEvent = viewModel::onEvent,
+                imagePicker = imagePicker
             )
 
         }

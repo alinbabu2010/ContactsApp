@@ -17,20 +17,29 @@ import androidx.compose.material3.Icon
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import com.composemultiplatform.contactsapp.contacts.domain.Contact
 import com.composemultiplatform.contactsapp.contacts.presentation.components.AddContactSheet
 import com.composemultiplatform.contactsapp.contacts.presentation.components.ContactListItem
+import com.composemultiplatform.contactsapp.core.presentation.ImagePicker
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun ContactListScreen(
     state: ContactsListState,
     newContact: Contact?,
-    onEvent: (ContactListEvent) -> Unit
+    onEvent: (ContactListEvent) -> Unit,
+    imagePicker: ImagePicker
 ) {
+
+    LaunchedEffect(Unit) {
+        imagePicker.registerPicker { imageBytes ->
+            onEvent(ContactListEvent.OnPhotoPicked(imageBytes))
+        }
+    }
     Scaffold(
         floatingActionButton = {
             FloatingActionButton(
@@ -81,6 +90,10 @@ fun ContactListScreen(
         state = state,
         newContact = newContact,
         isOpen = state.isAddContactSheetOpen,
-        onEvent = onEvent
+        onEvent = { event ->
+            if (event is ContactListEvent.OnAddPhotoClicked) {
+                imagePicker.pickImage()
+            } else onEvent(event)
+        }
     )
 }
