@@ -11,6 +11,9 @@ CREATE TABLE contactEntity (
 getContacts:
 SELECT * FROM contactEntity ORDER BY firstName ASC ;
 
+getContactsById:
+SELECT * FROM contactEntity WHERE id = :id;
+
 getRecentContacts:
 SELECT * FROM contactEntity ORDER BY createdAt DESC LIMIT :amount;
 
