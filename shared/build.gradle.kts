@@ -19,7 +19,7 @@ kotlin {
             export("dev.icerock.moko:mvvm-core:0.16.1")
         }
     }
-    
+
     listOf(
         iosX64(),
         iosArm64(),
